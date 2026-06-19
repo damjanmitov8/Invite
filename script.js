@@ -58,7 +58,7 @@ function showYesAnswer() {
         [
             {
                 id: "yes-btn",
-                text: "Togasshh NEEXXTT :))))",
+                text: "Togasshh NEEXXTT 🤩🤩",
                 onClick: showNextStep
             }
         ]
@@ -67,7 +67,7 @@ function showYesAnswer() {
 
 function showNextStep() {
     renderCard(
-        "Vo koj MOOD sme ? 😂",
+        "Vo koj MOOD sme ? ",
         "./Images/200.gif",
         [
             {
@@ -139,7 +139,7 @@ function showDateTimeStep()
 
         const DateTimeInput = document.createElement("input");
         DateTimeInput.type = "date"
-        DateTimeInput.textContent = "Odberi datum";
+
         let today = new Date();
         let year = today.getFullYear();
         let month = (today.getMonth() + 1).toString().padStart(2, '0');
@@ -181,9 +181,21 @@ function showDateTimeStep()
         confirmButton.textContent = "Deal";
         confirmButton.addEventListener("click", function()
         {
+                let selectedDate = new Date(DateTimeInput.value);
+                let today = new Date();
+                let maxAllowedDate = new Date();
+                maxAllowedDate.setDate(today.getDate() + 10);
+
             if(timeSelect.value === "" || DateTimeInput.value === "")
             {
                 alert("Te molam odberi vreme i datum!");
+            }
+            else if(DateTimeInput.value < DateTimeInput.min)
+            {
+                alert("Ne moze datum pred denes!");
+            }else if(selectedDate > maxAllowedDate)
+            {
+                alert("Nemozese pokasno da izberes.. Odberi porano!");
             }
             else
             {   
@@ -194,10 +206,8 @@ function showDateTimeStep()
                 time: timeSelect.value,
                 status: "deal"
                 };
-
-                console.log(dateInviteData);
+                
                 sendFormDataToFormspree(dateInviteData);
-
 
                 showFinalStep(dateInviteData);
 
@@ -232,7 +242,7 @@ function sendFormDataToFormspree(dateInviteData)
 }
 
 renderCard(
-    "🌹<b>Dejt</b>🌹 ?",
+    "<b>Oficijalno 19ti: Vreme e za relaksacija</b>🌹",
     "./Images/yes-gif-3.gif",
     [
         {
